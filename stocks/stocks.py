@@ -32,7 +32,6 @@ class Stocks():
         hv.extension('bokeh')
 
         quandl.ApiConfig.api_key = os.environ['QUANDL_API_KEY']
-        data_dir = 'data/'
         self.price = {}
         # collate exchange data
         self.exchange_data = {}
