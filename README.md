@@ -33,7 +33,7 @@ This Python notebook is 100% open-source, feel free to utilize the code however 
 ```
 The MIT License (MIT)
 
-Copyright (c) 2017 Patrick Triest
+Copyright (c) 2022 Patrick Triest, Emanuele Cannizzaro
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
