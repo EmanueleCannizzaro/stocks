@@ -65,11 +65,13 @@ class Stocks():
         
     def get_quandl_trace(self, quandl_code:str=None):
         if quandl_code:
-            trace = hv.Scatter(self.price[quandl_code], kdims=['Date'], vdims=['Weighted Price'])
+            #trace = hv.Scatter(self.price[quandl_code], kdims=['Date'], vdims=['Weighted Price'])
+            trace = hv.Curve((self.price[quandl_code].index, self.price[quandl_code]['Weighted Price']))
         else:
-            trace = hv.Scatter(self.price, kdims=['Date'], vdims=['Weighted Price'])
+            #trace = hv.Scatter(self.price, kdims=['Date'], vdims=['Weighted Price'])
+            trace = hv.Curve((self.price.index, self.price['Weighted Price']))
         overlay = (trace)
-        overlay.opts(width=900, height=400, xrotation=45, title=' Price', legend_position='bottom_right')
+        overlay.opts(width=900, height=400, xrotation=45, title=' Price')#, legend_position='bottom_right')
         return overlay
     
     def merge(self, dataframes, col):
@@ -87,12 +89,13 @@ class Stocks():
         # setting up traces for plotting
         traces = []
         for cid in self.average_price.columns:
-            trace = hv.Scatter(self.average_price[cid], kdims=['Date'], vdims=[cid])
+            #trace = hv.Scatter(self.average_price[cid], kdims=['Date'], vdims=[cid])
+            trace = hv.Curve((self.average_price.index, self.average_price[cid]))
             traces.append(trace)
 
         print(len(traces))
         overlay = (traces[0] * traces[1] * traces[2] * traces[3] * traces[4] * traces[5])
-        overlay.opts(width=900, height=400, xrotation=45, title="Price by Exchange", legend_position='bottom_right')
+        overlay.opts(width=900, height=400, logy=True, xrotation=45, title="Price by Exchange", legend_position='bottom_right')
         
         return overlay
     
